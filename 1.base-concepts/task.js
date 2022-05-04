@@ -15,13 +15,18 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  let totalAmount = "Ошибка расчета";
-  if (isNaN(percent) || (percent < 0)) return `Параметр "percent" содержит неправильное значение ${percent}`;
-  if (isNaN(percent) || (contribution < 0)) return `Параметр "contribution" содержит неправильное значение ${contribution}`;
-  if (isNaN(percent) || (amount < 0)) return `Параметр "amount" содержит неправильное значение ${amount}`;
-  percent = +percent;
+  let totalAmount = 0;
+  if (isNaN(percent) || (percent < 0)) return `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`;
+  if (isNaN(contribution) || (contribution < 0)) return `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`;
+  if (isNaN(amount) || (amount < 0)) return `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`;
+  percent = +percent / 100;
   contribution = +contribution;
   amount = +amount;
-
-  return totalAmount;
+  let dateTo = date;
+  let dateFrom = new Date();
+  let months = dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
+  let finalLoan = amount - contribution;
+  let payment = finalLoan * (percent / 12 + ((percent / 12) / (((1 + (percent / 12)) ** months) - 1)));
+  totalAmount = payment * months;
+  return +totalAmount.toFixed(2);
 }
