@@ -124,6 +124,7 @@ class Student {
         return sum / this.disciplines[subject].length;
     }
 
+    
     getAverage () {
         let sum = 0;
         let marksCount = 0;
@@ -147,13 +148,3 @@ class Student {
         this.excluded = reason;
     }
 }
-
-let student = new Student("Иван Петров");
-student.addMark(3, "algebra");
-student.addMark(5, "algebra");
-student.addMark(3, "algebra");
-      student.addMark(5, "algebra");
-      student.addMark(5, "history");
-      student.addMark(5, "history");
-
-    student.printGrades();
