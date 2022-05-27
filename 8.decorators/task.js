@@ -29,24 +29,13 @@ function debounceDecoratorNew(func, ms) {
 
   return function() {
     count++;
-    console.log(count + " " + onCooldown);
+    console.log(count);
     if(timerId) clearTimeout(timerId);
     timerId = setTimeout(() => onCooldown = false, ms);
-
     if (!onCooldown) {
       func();
       onCooldown = true;
     }
-  //   if (timerId){
-  //     clearTimeout(timerId);
-  //     timerId = setTimeout(() => onCooldown = false, ms);
-  //   }
-  //   if (onCooldown) return; 
-
-  //   func();
-  //   timerId = setTimeout(() => onCooldown = false, ms);
-  //   onCooldown = true;
-  // }
   }
 }
 
